@@ -1,0 +1,222 @@
+{
+    "root": "doc",
+    "rules": [
+        {
+            "name": "doc",
+            "definition": [{
+                "type": "grouping",
+                "condition": "+",
+                "set": [
+                    {
+                        "index": 1,
+                        "rule": "preface"
+                    },
+                    {
+                        "index": 2,
+                        "rule": "preamble"
+                    },
+                    {
+                        "index": 3,
+                        "rule": "body"
+                    },
+                    {
+                        "index": 4,
+                        "rule": "conclusion"
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "preface",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "index": 1,
+                        "rule": "preface_start"
+                    },
+                    {
+                        "index": 2,
+                        "rule": "preface_sentences"
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "preface_start",
+            "definition": [{
+                "type": "grouping",
+                "set": [{"rule": "PREFACE_START", "index": 1}]
+            }]
+        },
+        {
+            "name": "preface_sentences",
+            "definition": [
+                {
+                "type": "grouping",
+                "set": [{
+                    "rule": "sentence",
+                    "index": 1,
+                    "condition": "+"
+                }]
+               }
+        ]
+        },
+        {
+            "name": "preamble",
+            "definition": [ 
+                {
+                "type": "grouping",
+                "comment": "preamble_start? (preamble_lines|recitals)+",
+                "set": [
+                    {
+                    "rule": "preamble_start",
+                    "index": 1,
+                    "condition": "?",
+                    "comment": "preamble_start?"
+                    },
+                    {
+                        "type": "grouping",
+                        "index": 2,
+                        "condition": "+",
+                        "operator": "|",
+                        "comment" : "(preamble_lines|recitals)+",
+                        "set": [
+                            {
+                                "rule": "preamble_lines",
+                                "index": 1
+                            },
+                            {
+                                "rule": "recitals",
+                                "index": 2
+                            },
+                            {
+                                "rule": "blah",
+                                "index": 3
+                            }                       
+                        ]
+                    }
+                ]
+            }
+            ]
+        },
+        {
+            "name": "preamble_start",
+            "definition": [{
+                "type": "grouping",
+                "set": [{"rule": "PREAMBLE_START", "index": 1}]
+            }]
+        },
+        {
+            "name": "preamble_lines",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                    "rule": "preamble_line", 
+                    "index": 1, 
+                    "condition": "+"
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "preamble_line",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                    "rule": "sentence",
+                    "index": 1
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "sentence",
+            "definition": [{
+                "type": "grouping",
+                "set" : [
+                    {
+                        "rule": "SENTENCE",
+                        "index": 1,
+                        "condition": "+"
+                    },
+                    {
+                        "rule": "NEWLINE",
+                        "index": 1,
+                        "condition": "+"
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "recitals",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "rule": "recital",
+                        "index": 1,
+                        "condition": "+"
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "recital",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "rule": "recital_start",
+                        "index": 1
+                    },
+                    {
+                        "rule": "recital_lines",
+                        "index": 2
+                    }
+                ]
+            }]
+        },        
+        {
+            "name": "body",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "rule": "book",
+                        "index": 1
+                    }
+                ]
+            }]
+        },
+        {
+            "name": "book",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "rule": "sentence",
+                        "index": 1,
+                        "condition": "+"
+                    }
+                ]
+            }]
+        },
+        
+        {
+            "name": "conclusion",
+            "definition": [{
+                "type": "grouping",
+                "set": [
+                    {
+                        "rule": "sentence",
+                        "index": 1
+                    }
+                ]
+            }]
+        }
+        
+]
+}
