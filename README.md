@@ -1,4 +1,4 @@
-# antlr-json-serialization
+# ANTLR-JSON
 
 A JSON serialization of ANTLR rules, a more evolved version of this is used by the [BungeniX Text to XML Parser](https://www.bungeni.com/text_to_akomantoso.html)
 
